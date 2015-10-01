@@ -1,10 +1,24 @@
+Snowflake[] snow;
 void setup()
 {
-  //your code here
+  frameRate(8);
+  noStroke();
+  size(500,500);
+  snow = new Snowflake[80];
+  for (int i=0; i< snow.length; i++)
+  {
+    snow[i] = new Snowflake((float)(Math.random()*490)+5,(float)(Math.random()*490)+5);
+  }
 }
 void draw()
 {
-  //your code here
+  background(0);
+  for (int i=0; i< snow.length; i++)
+  {
+    snow[i].move();
+    snow[i].show();
+    snow[i].lookDown();
+  }
 }
 void mouseDragged()
 {
@@ -13,18 +27,26 @@ void mouseDragged()
 
 class Snowflake
 {
-  //class member variable declarations
-  Snowflake()
+  float myY, myX, speed;
+  Snowflake(float x, float y)
   {
-    //class member variable initializations
+    myY = y;
+    myX = x;
+    speed = (float)(Math.random());
   }
   void show()
   {
-    //your code here
+    ellipse(myX,myY,10,10);
   }
   void lookDown()
   {
-    //your code here
+    for (int i=0; i< snow.length; i++)
+    {
+      if (snow[i].myY>500)
+      {
+        snow[i].myY=0;
+      }
+    }
   }
   void erase()
   {
@@ -32,7 +54,11 @@ class Snowflake
   }
   void move()
   {
-    //your code here
+    for (int i=0; i< snow.length; i++)
+    {
+      System.out.println(snow[i].speed);
+      myY= myY + snow[i].speed;
+    }
   }
   void wrap()
   {
