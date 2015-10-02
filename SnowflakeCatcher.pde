@@ -7,7 +7,7 @@ void setup()
   snow = new Snowflake[80];
   for (int i=0; i< snow.length; i++)
   {
-    snow[i] = new Snowflake((float)(Math.random()*490)+5,(float)(Math.random()*490)+5);
+    snow[i] = new Snowflake((int)(Math.random()*500),(int)(Math.random()*500));
   }
 }
 void draw()
@@ -27,16 +27,17 @@ void mouseDragged()
 
 class Snowflake
 {
-  float myY, myX, speed;
-  Snowflake(float x, float y)
+  int myY, myX;
+  boolean isMoving;
+  Snowflake(int x, int y)
   {
-    myY = y;
-    myX = x;
-    speed = (float)(Math.random());
+    isMoving = true;
+    myX=x;
+    myY=y;
   }
   void show()
   {
-    ellipse(myX,myY,10,10);
+    ellipse(myX,myY,7,7);
   }
   void lookDown()
   {
@@ -50,14 +51,17 @@ class Snowflake
   }
   void erase()
   {
-    //your code here
+    fill(0);
+    ellipse(myX,myY,7,7);
   }
   void move()
   {
     for (int i=0; i< snow.length; i++)
     {
-      System.out.println(snow[i].speed);
-      myY= myY + snow[i].speed;
+      if (snow[i].isMoving)
+      {
+        snow[i].myY=snow[i].myY+1;
+      }
     }
   }
   void wrap()
