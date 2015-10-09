@@ -1,3 +1,4 @@
+//PImage
 Snowflake[] snow;
 Snowflake[] snow2;
 void setup()
@@ -6,7 +7,7 @@ void setup()
   frameRate(40);
   noStroke();
   size(500,500);
-  snow = new Snowflake[150];
+  snow = new Snowflake[300];
   for (int i=0; i< snow.length; i++)
   {
     snow[i] = new Snowflake((int)(Math.random()*490)+5,(int)(Math.random()*490)+5);
@@ -14,14 +15,14 @@ void setup()
 }
 void draw()
 {
-  //background(0);
   for (int i=0; i< snow.length; i++)
   {
     snow[i].erase();
-    //snow[i].lookdown();
+    snow[i].wrap();
+    snow[i].lookdown();
     snow[i].move();
     snow[i].show();
-    snow[i].wrap();
+    
   }
 }
 void mouseDragged()
@@ -57,7 +58,7 @@ class Snowflake
   void erase()
   {
     fill(0);
-    ellipse(myX,myY,9,9);
+    ellipse(myX,myY,8,8);
   }
   void move()
   {
@@ -68,11 +69,11 @@ class Snowflake
   }
   void lookdown()
   {
-    if(get(myX+3,myY+3) !=color(0,0,0))
+    if(get(myX+6,myY+6) ==color(100))
     {
       isMoving=false;
     }
-    else if(get(myX-3,myY+3) !=color(0,0,0))
+    else if(get(myX-6,myY+6) ==color(100))
     {
       isMoving=false;
     }
