@@ -11,11 +11,11 @@ void setup()
   background(0);
   frameRate(40);
   noStroke();
-  size(800,800);
-  snow = new Snowflake[70];
+  size(500,500);
+  snow = new Snowflake[50];
   for (int i=0; i< snow.length; i++)
   {
-    snow[i] = new Snowflake((int)(Math.random()*790)+5,(int)(Math.random()*790)+5);
+    snow[i] = new Snowflake((int)(Math.random()*490)+5,(int)(Math.random()*490)+5);
   }
 }
 void draw()
@@ -60,7 +60,7 @@ class Snowflake
   }
   void wrap()
   {
-    if (myY>790)
+    if (myY>490)
     {
       myY=-30;
     }
