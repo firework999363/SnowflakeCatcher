@@ -12,7 +12,7 @@ void setup()
   frameRate(40);
   noStroke();
   size(800,800);
-  snow = new Snowflake[100];
+  snow = new Snowflake[70];
   for (int i=0; i< snow.length; i++)
   {
     snow[i] = new Snowflake((int)(Math.random()*790)+5,(int)(Math.random()*790)+5);
