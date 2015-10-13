@@ -1,16 +1,21 @@
-//PImage
+PImage money;
+PImage star;
+PImage eraser;
 Snowflake[] snow;
 Snowflake[] snow2;
 void setup()
 {
+  star = loadImage("communism.png");
+  eraser = loadImage("eraser.png");
+  money = loadImage("DOLLABILLS.png");
   background(0);
   frameRate(40);
   noStroke();
-  size(500,500);
-  snow = new Snowflake[300];
+  size(800,800);
+  snow = new Snowflake[250];
   for (int i=0; i< snow.length; i++)
   {
-    snow[i] = new Snowflake((int)(Math.random()*490)+5,(int)(Math.random()*490)+5);
+    snow[i] = new Snowflake((int)(Math.random()*790)+5,(int)(Math.random()*790)+5);
   }
 }
 void draw()
@@ -22,15 +27,21 @@ void draw()
     snow[i].lookdown();
     snow[i].move();
     snow[i].show();
-    
   }
 }
 void mouseDragged()
 {
   if(mouseButton==LEFT)
   {
-    fill(100);
-    ellipse(mouseX,mouseY,7,7);
+    if (frameCount%3 == 0)
+    {
+      image(money,mouseX,mouseY);
+    }
+  }
+  if(mouseButton==RIGHT)
+  {
+    fill(0);
+    ellipse(mouseX,mouseY,30,30);
   }
 }
 class Snowflake
@@ -45,20 +56,18 @@ class Snowflake
   }
   void show()
   {
-    fill(255);
-    ellipse(myX,myY,7,7);
+    image(star,myX,myY);
   }
   void wrap()
   {
-    if (myY>490)
+    if (myY>790)
     {
-      myY=0;
+      myY=-30;
     }
   }
   void erase()
   {
-    fill(0);
-    ellipse(myX,myY,8,8);
+    image(eraser,myX,myY);
   }
   void move()
   {
@@ -69,11 +78,15 @@ class Snowflake
   }
   void lookdown()
   {
-    if(get(myX+6,myY+6) ==color(100))
+    if(get(myX,myY+38) == color(0,194,0) || get(myX,myY+38) == color(0,220,0))
     {
       isMoving=false;
     }
-    else if(get(myX-6,myY+6) ==color(100))
+    else if(get(myX+34,myY+38) == color(0,194,0) || get(myX+34,myY+38) == color(0,220,0))
+    {
+      isMoving=false;
+    }
+    else if(get(myX+17,myY+38) == color(0,194,0) || get(myX+17,myY+38) == color(0,220,0))
     {
       isMoving=false;
     }
@@ -83,5 +96,3 @@ class Snowflake
     } 
   }
 }
-
-
